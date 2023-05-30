@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="../menu.css" />
+    <link rel="stylesheet" href="insert.css" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+  </head>
+  <body>
+    <div id="tampilan-kiri">
+      <a href="../" id="tampilan">Lihat Soal</a>
+      <a href="../edit-soal/" id="ubah">Edit Soal</a>
+      <a href="../hapus-soal/ " id="hapus">Hapus Soal</a>
+      <a href="../insert-soal/insert.html" id="tambah">Tambah Soal</a>
+      <a href="" id="keluar">Keluar</a>
+    </div>
+    <div class="main">
+      <h1>Tambah Soal</h1>
+      <form action="" name="input_soal">
+        <label for="" class="soal"
+          >Masukkan Nomor Soal
+          <input
+            type="number"
+            name="nomor"
+            placeholder="kode soal"
+            required
+            autofocus
+          />
+        </label>
+        <label for="" class="buat-soal">
+          Masukkan Soal
+          <textarea
+            name="soal"
+            id=""
+            cols="30"
+            rows="10"
+            placeholder="Keterangan soal ... "
+            required
+          ></textarea>
+        </label>
+        <label for="" class="soal"
+          >Pilihan isi A<input
+            type="text"
+            name="pilihA"
+            id=""
+            placeholder="Masukkan  bagian A"
+            required
+        /></label>
+        <label for="" class="soal"
+          >Pilihan isi B<input
+            type="text"
+            name="pilihB"
+            id=""
+            placeholder="Masukkan bagian B"
+            required
+        /></label>
+        <label for="" class="soal"
+          >Pilihan isi C<input
+            type="text"
+            name="pilihC"
+            id=""
+            placeholder="Masukkan bagian C"
+            required
+        /></label>
+        <label for="" class="soal"
+          >Pilihan isi D<input
+            type="text"
+            name="pilihD"
+            id=""
+            placeholder="Masukkan bagian D"
+            required
+        /></label>  
+              <label for="" class="soal"
+        >jawaban<input
+          type="text"
+          name="jawaban"
+          id=""
+          placeholder="Masukkan jawaban"
+          required
+      /></label>
+        <button>Simpan</button>
+        <button type="reset">Batal</button>
+      </form>
+    </div>
+    <a href="../../index.html"></a>
+    <script type="module">
+      import validasiUrl from "../../validasi-url.js";
+      validasiUrl();
+      document.input_soal.onsubmit = async (e) => {
+        e.preventDefault();
+        const response = await fetch("/api/admin/soal", {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            nomor: document.input_soal.nomor.value,
+            soal: document.input_soal.soal.value,
+            pilihA: document.input_soal.pilihA.value,
+            pilihB: document.input_soal.pilihB.value,
+            pilihC: document.input_soal.pilihC.value,
+            pilihD: document.input_soal.pilihD.value,
+            jawaban: document.input_soal.jawaban.value,
+          }),
+      
+        });
+        hapus();
+        const message = await response.text();
+        alert(message);
+        location.href="../";
+      };
+      function hapus() {
+        document.input_soal.nomor.value = "";
+        document.input_soal.soal.value = "";
+        document.input_soal.pilihA.value = "";
+        document.input_soal.pilihB.value = "";
+        document.input_soal.pilihC.value = "";
+        document.input_soal.pilihD.value = "";
+        document.input_soal.jawaban.value = "";
+      }
+      document.querySelector("#keluar").onclick = (e) => {
+        window.localStorage.clear(localStorage.getItem("token"));
+        location.reload();
+      };
+    </script>
+  </body>
+</html>

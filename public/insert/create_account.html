@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style_registrasi.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Membuat Akun</h1>
+      <div class="container-from">
+        <button class="tombol-login">Login</button>
+        <button class="tombol-regis">Registrasi</button>
+      </div>
+      <div class="container-registrasi">
+        <fieldset>
+          <legend><b>Registrasi</b></legend>
+          <form action="" name="regis">
+            <label for=""
+              >Nama Lengkap<input
+                type="text"
+                name="nama"
+                placeholder="Masukkan nama depan"
+                id="input-nama-depan"
+                autofocus
+                required
+            /></label>
+            <label for=""
+              >E-mail<input
+                type="email"
+                name="email"
+                placeholder="Masukkan E-mail"
+                id="input-email"
+                required
+            /></label>
+            <label for="">
+              Foto Profil
+              <input type="file" name="photo" id="file" required />
+            </label>
+            <label for=""
+              >Username<input
+                type="text"
+                name="user"
+                placeholder="Masukkan User"
+                id="input-user"
+                required
+            /></label>
+            <label for=""
+              >Password<input
+                type="password"
+                name="password"
+                placeholder="Masukkan Password"
+                id="input-password"
+                required
+            /></label>
+
+            <div class="container-from">
+              <button id="simpan-data">simpan</button>
+              <button type="reset" id="batas">Batal</button>
+            </div>
+          </form>
+        </fieldset>
+      </div>
+    </div>
+    <script>
+      document.regis.onsubmit = async (e) => {
+        e.preventDefault();
+        const data = new FormData();
+        data.append("nama", document.regis.nama.value);
+        data.append("email", document.regis.email.value);
+        data.append("photo", document.regis.photo.files[0]);
+        data.append("username", document.regis.user.value);
+        data.append("password", document.regis.password.value);
+        const response = await fetch("/api/registrasi", {
+          method: "POST",
+          body: data,
+        });
+        hapus();
+        location.href = "../";
+      };
+
+      function hapus() {
+        document.regis.nama.value = "";
+        document.regis.email.value = "";
+        document.regis.file.value = "";
+        document.regis.user.value = "";
+        document.regis.password.value = "";
+      }
+      document.querySelector(".tombol-regis ").onclick = (e) => hapus();
+      document.querySelector(".tombol-login").onclick = (e) =>
+        (location.href = "../");
+    </script>
+  </body>
+</html>

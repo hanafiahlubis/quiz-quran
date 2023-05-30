@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div id="tampilan-kiri">
+      <a href="../" id="tampilan">Lihat Soal</a>
+      <a href="../edit-soal/" id="ubah">Edit Soal</a>
+      <a href="../hapus-soal/" id="hapus">Hapus Soal</a>
+      <a href="../insert-soal/insert.html" id="tambah">Tambah Soal</a>
+      <a href="" id="keluar">Keluar</a>
+
+    </div>
+    <div class="main">
+      <h1>Hapus Soal</h1>
+      <form action="" name="input_soal">
+        <select id="tampilan-soal"></select>
+        <label for="" class="buat-soal">
+          Masukkan Soal
+          <textarea
+            name="soal"
+            id=""
+            cols="30"disble
+            rows="10"
+            placeholder="Keterangan soal ... "
+            required
+            disabled
+          ></textarea>
+        </label>
+        <label for="" class="soal"
+          >Pilihan isi A<input
+            type="text"
+            name="pilihA"
+            id=""
+            placeholder="Masukkan  bagian A"
+            required
+            disabled
+        /></label>
+        <label for="" class="soal"
+          >Pilihan isi B<input
+            type="text"
+            name="pilihB"
+            id=""
+            placeholder="Masukkan bagian B"
+            required
+            disabled
+        /></label>
+        <label for="" class="soal"
+          >Pilihan isi C<input
+            type="text"
+            name="pilihC"
+            id=""
+            placeholder="Masukkan bagian C"
+            required
+            disabled
+        /></label>
+        <label for="" class="soal"
+          >Pilihan isi D<input
+            type="text"
+            name="pilihD"
+            id=""
+            placeholder="Masukkan bagian D"
+            required
+            disabled
+        /></label>      
+          <label for="" class="soal"
+        >Pilihan isi D<input
+          type="text"
+          name="jawaban"
+          id=""
+          placeholder="Masukkan jawaban"
+          required
+          disabled
+      /></label>
+        <button>Hapus</button>
+        <button type="reset">Batal</button>
+      </form>
+    </div>
+    <script type="module">
+      import { option, tampilanSoal } from "../edit-soal/edit-soal.js";
+      import  validasiUrl,{fetch3 } from "../../validasi-url.js";
+      const soal = document.getElementById("tampilan-soal");
+      let nomor = 0;
+      soal.addEventListener("change", (e) => tampilanSoal(e.target.value));
+     
+      document.input_soal.onclick = async (e) => {
+        e.preventDefault();
+        const data = {
+          nomor :  document.getElementById("tampilan-soal").value,
+        }
+        const response = await fetch3("/api/admin/delete","DELETE",data);
+         const pesan = await  response.text();
+         alert(pesan);
+         location.href = "../";
+      }
+      document.querySelector("#keluar").onclick = (e) => {
+    window.localStorage.clear(localStorage.getItem("token"));
+    location.reload();
+  };
+    </script>
+  </body>
+</html>

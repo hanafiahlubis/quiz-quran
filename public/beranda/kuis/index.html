@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>kuis</title>
+    <!-- <link rel="stylesheet" href="style.css" /> -->
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="style-quiz.css" />
+  </head>
+  <body>
+    <h1>contoh soal Kuis dan jawaban nya</h1>
+    <div class="sidenav">
+      <div class="profil">
+        <div class="profil-quiz">
+          <img src="../../photos/giphy.gif" alt="" />
+        </div>
+        <p></p>
+      </div>
+      <div class="jarak"></div>
+
+      <a href="../index.html">Beranda</a>
+      <a href="../al-quran/">Al-Qur`an</a>
+      <a id="quiz" href="../kuis/">Quis</a>
+      <a id="keluar" href="">Keluar</a>
+    </div>
+    <div class="main"></div>
+    <script  >
+        !localStorage.getItem("token") && (location.href = "/");
+
+      const main = document.querySelector(".main");
+      
+      async function soal() {
+         const res = await fetch("/api/soal", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          "Content-Type": "application/json",
+        },
+      });
+        const data =await  res.json();
+          data.forEach((e, i) => {
+            const div = document.createElement("div");
+            div.className = "container2";
+
+            const p = document.createElement("p");
+            p.textContent =`${i+1}. ${e.soal}`;
+            div.appendChild(p);
+
+            const form = document.createElement("form");
+            form.className = "soal";
+            // A
+            const div2 = document.createElement("div");
+            div2.className = "jawaban";
+            const input = document.createElement("input");
+            input.name = `pilihan${i}`;
+            input.value = "A";
+            div2.textContent = e.pilihan_A;
+            input.setAttribute("type", "radio");
+            div2.appendChild(input);
+            form.appendChild(div2);
+            // B
+            const div3 = document.createElement("div");
+            div3.className = "jawaban";
+            div3.textContent = e.pilihan_B;
+            const input2 = document.createElement("input");
+            input2.name = `pilihan${i}`;
+            input2.setAttribute("type", "radio");
+            input2.value = "B";
+
+            div3.appendChild(input2);
+            form.appendChild(div3);
+            // C
+            const div4 = document.createElement("div");
+            div4.className = "jawaban";
+            div4.textContent = e.pilihan_C;
+            const input3 = document.createElement("input");
+            input3.value = "C";
+            input3.name = `pilihan${i}`;
+            input3.setAttribute("type", "radio");
+            div4.appendChild(input3);
+            form.appendChild(div4);
+
+            const div5 = document.createElement("div");
+            div5.className = "jawaban";
+            div5.textContent = e.pilihan_D;
+            const input4 = document.createElement("input");
+            input4.name = `pilihan${i}`;
+            input4.value = "D";
+            input4.setAttribute("type", "radio");
+            div5.appendChild(input4);
+            form.appendChild(div5);
+
+            const div6 = document.createElement("div");
+            div6.className = "jawaban";
+            const jawaban = document.createElement("p");
+            jawaban.textContent = `jawaban : *${e.jawaban}*`;
+            div6.appendChild(jawaban);
+          
+            div.appendChild(form);
+            div.appendChild(div6);
+            main.appendChild(div);
+            document.body.appendChild(main);
+          });
+        }
+        soal();
+      document.querySelector("#keluar").onclick = () => {
+        window.localStorage.clear(localStorage.getItem("token"));
+        location.reload();
+      };
+    </script>
+  </body>
+</html>

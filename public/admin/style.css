@@ -1,0 +1,116 @@
+  .main {
+      margin-left: 80px;
+  }
+
+  table,
+  tr,
+  th,
+  td {
+      background: deeppink;
+      color: blanchedalmond;
+      padding: 15px;
+      border: 1px solid;
+  }
+
+  table {
+      margin: auto;
+      text-align: center;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    height: 100vh;
+    background: aquamarine;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#tampilan-kiri a {
+    position: absolute;
+    left: -80px;
+    transition: 0.3s;
+    padding: 15px;
+    width: 100px;
+    text-decoration: none;
+    font-size: 20px;
+    color: white;
+    border-radius: 0 5px 5px 0;
+}
+
+#tampilan-kiri a:hover {
+    left: 0;
+}
+
+#tampilan {
+    top: 20px;
+    background-color: #04aa6d;
+}
+
+#ubah {
+    top: 80px;
+    background-color: #2196f3;
+}
+
+#hapus {
+    top: 140px;
+    background-color: #f44336;
+}
+
+#tambah {
+    top: 200px;
+    background-color: #555;
+}
+#keluar {
+    top: 284px;
+    background-color: blue;
+}
+  @media(max-width:898px) {
+      table {
+          padding: 8px;
+          width: 10px;
+          font-size: 10px;
+
+      }
+      .main{
+        margin-left: 0;
+      }
+  }
+
+  @media(max-width:566px) {
+      table {
+          width: 10px;
+          font-size: 8px;
+      }
+
+      .main {
+          margin-left: 22px;
+      }
+
+
+  }
+
+  @media(max-width:514px){
+    #tampilan {
+        top: 0;
+    }
+    #tampilan-kiri a {
+        padding: 4px;
+        font-size: 8px;
+        text-align: end;
+    }
+    #ubah {
+        top:20px
+    }
+    #hapus{
+        top:40px;
+    }
+    #tambah{
+        top:60px;
+    }
+    #keluar{
+        top:80px;
+    }
+    
+  }

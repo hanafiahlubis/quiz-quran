@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Beranda</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="">
+  </head>
+  <body>
+    <div class="sidenav">
+      <div class="profil">
+        <div class="profil-foto">
+          <!-- <img src="senyuman mu itu.PNG" alt="" /> -->
+        </div>
+        <p></p>
+      </div>
+      <div class="jarak"></div>
+
+      <a href="../beranda/">Beranda</a>
+      <a href="./al-quran/">Al-Qur`an</a>
+      <a href="./kuis/">Quiz</a>
+      <a id="keluar" href="">keluar</a>
+    </div>
+
+    <div class="main"></div>
+    <script type="module">
+      import validasiUrl, { fetch2 } from "../validasi-url.js";
+      const searchParams = new URLSearchParams(location.search);
+      async function informasi() {
+        const main = document.querySelector(".main");
+
+        validasiUrl();
+
+        const res = await fetch2("/api/beranda", {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            "Content-Type": "application/json",
+          },
+        });
+        const data = await res.json();
+        data.forEach((e) => {
+          const div = document.createElement("div");
+          div.className = "container";
+
+          const divContainer = document.createElement("div");
+          divContainer.className = "container-header";
+
+          const divPhoto = document.createElement("div");
+          divPhoto.className = "photo";
+
+          const img = document.createElement("img");
+          img.src = e.gambar;
+          divPhoto.appendChild(img);
+
+          const h3Judul = document.createElement("h3");
+          h3Judul.textContent = e.judul;
+          divContainer.appendChild(h3Judul);
+
+          const h3 = document.createElement("h3");
+          h3.textContent = e.hadis_arab;
+          divContainer.appendChild(h3);
+
+          const p = document.createElement("p");
+          p.textContent = e.arti;
+          divContainer.appendChild(p);
+
+          div.appendChild(divPhoto);
+          div.appendChild(divContainer);
+          main.appendChild(div);
+        });
+      }
+      async function tampilProfil() {
+        const res = await fetch(`/api/me`, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
+        const data = await res.json();
+        let profil = document.querySelector(".profil-foto");
+
+        let img = document.createElement("img");
+        img.src = `../photos/${data.photo}`;
+        profil.appendChild(img);
+      }
+      document.querySelector("#keluar").onclick = () =>{
+        window.localStorage.clear(localStorage.getItem("token"));
+        location.reload();
+        
+      }
+
+      informasi();
+      tampilProfil();
+    </script>
+  </body>
+</html>

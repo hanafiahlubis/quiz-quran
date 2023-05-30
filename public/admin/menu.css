@@ -1,0 +1,50 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    height: 100vh;
+    background: aquamarine;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#tampilan-kiri a {
+    position: absolute;
+    left: -80px;
+    transition: 0.3s;
+    padding: 15px;
+    width: 100px;
+    text-decoration: none;
+    font-size: 20px;
+    color: white;
+    border-radius: 0 5px 5px 0;
+}
+
+#tampilan-kiri a:hover {
+    left: 0;
+}
+
+#tampilan {
+    top: 20px;
+    background-color: #04aa6d;
+}
+
+#ubah {
+    top: 80px;
+    background-color: #2196f3;
+}
+
+#hapus {
+    top: 140px;
+    background-color: #f44336;
+}
+
+#tambah {
+    top: 200px;
+    background-color: #555;
+}
+#keluar {
+    top: 284px;
+    background-color: blue;
+}

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="shortcut icon" href="#" />
+  </head>
+  <body>
+    <div id="container">
+      <h1>Login</h1>
+      <div class="container-from">
+        <button class="tombol-masuk-atas">Login</button>
+        <button class="tombol-masuk-registrasi">Registrasi</button>
+      </div>
+      <div class="container-login">
+        <form name="login">
+          <input
+            placeholder="Masukkan User...."
+            type="text"
+            name="user"
+            required
+            autofocus
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="password"
+            required
+          />
+          <button class="tombol-masuk">Login</button>
+        </form>
+      </div>
+    </div>
+    <script>
+      document.login.onsubmit = async (e) => {
+        e.preventDefault();
+        let user = document.login.user.value;
+        let pass = document.login.password.value;
+
+        const response = await fetch("/api/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username: user,
+            password: pass,
+          }),
+        });
+        if (response.ok) {
+          const data = await response.json();
+          localStorage.setItem("token", data.token);
+          if (!localStorage.getItem("token")) {
+            location.href = "../";
+          }
+          const res = await fetch("/api/me", {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          });
+          const data2 = await res.json();
+          if (data.role === "user") {
+            location.href = `/beranda?id=${data2.id}`;
+          } else if (data.role === "admin") {
+            location.href = "./admin";
+          }
+        } else {
+          const message = await response.text();
+          alert(message);
+        }
+        document.login.user.value = "";
+        document.login.password.value = "";
+      };
+      document.querySelector(".tombol-masuk-registrasi").onclick = (e) =>
+        (location.href = "/insert/create_account.html");
+      document.querySelector(".tombol-masuk-atas").onclick = (e) =>
+        (location.href = "/");
+    </script>
+  </body>
+</html>

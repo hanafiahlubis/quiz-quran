@@ -1,0 +1,118 @@
+.main {
+    margin-left: 80px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    background: aqua;
+    gap: 8px;
+}
+
+.soal {
+    background: antiquewhite;
+    display: flex;
+    gap: 2rem;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.buat-soal {
+    display: contents;
+}
+
+.main>h1 {
+    display: flex;
+    justify-content: center;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    height: 100vh;
+    background: aquamarine;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#tampilan-kiri a {
+    position: absolute;
+    left: -80px;
+    transition: 0.3s;
+    padding: 15px;
+    width: 100px;
+    text-decoration: none;
+    font-size: 20px;
+    color: white;
+    border-radius: 0 5px 5px 0;
+}
+
+#tampilan-kiri a:hover {
+    left: 0;
+}
+
+#tampilan {
+    top: 20px;
+    background-color: #04aa6d;
+}
+
+#ubah {
+    top: 80px;
+    background-color: #2196f3;
+}
+
+#hapus {
+    top: 140px;
+    background-color: #f44336;
+}
+
+#tambah {
+    top: 200px;
+    background-color: #555;
+}
+#keluar {
+    top: 284px;
+    background-color: blue;
+}
+
+@media(max-width:400px){
+    #tampilan {
+        top: 10px;
+    }
+    
+    #ubah {
+        top: 50px;
+    }
+    
+    #hapus {
+        top: 90px;
+    }
+    
+    #tambah {
+        top: 130px;
+    }
+    #keluar {
+        top: 170px;
+    }
+    #tampilan-kiri a {
+        padding: 12px;
+        text-align: end;
+        font-size: 12px;
+        margin-left: -16px;
+    }
+    .buat-soal{
+        font-size: 12px;
+
+    }
+    input[type="text"]{
+        width: 120px;
+    }
+    .main{
+        margin-left: 24px;
+    }
+}

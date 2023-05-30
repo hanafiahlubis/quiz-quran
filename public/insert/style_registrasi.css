@@ -1,0 +1,66 @@
+body {
+    height: 100vh;
+    background: radial-gradient(circle at 50% -20.71%, #d1fff8 0, #befff6 10%, #a7fff4 20%, #8dfff3 30%, #6cfbf2 40%, #3cf2f2 50%, #00e8f3 60%, #00dff5 70%, #00d6f9 80%, #00cefd 90%, #00c6ff 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+}
+
+.container {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    height: 28rem;
+    width: 24rem;
+    border-radius: 8px;
+    background: white;
+    box-shadow: 0 0 8px 0 #0008;
+    align-items: center
+}
+
+h1 {
+    margin: 2rem;
+}
+
+.container-from {
+    display: flex;
+    justify-content: space-evenly;
+    width: 20rem;
+}
+
+button {
+    width: 6rem;
+    padding: 0 18px;
+    height: 2rem;
+    background: radial-gradient(circle at 50% -20.71%, #d1fff8 0, #befff6 10%, #a7fff4 20%, #8dfff3 30%, #6cfbf2 40%, #3cf2f2 50%, #00e8f3 60%, #00dff5 70%, #00d6f9 80%, #00cefd 90%, #00c6ff 100%);
+    border-radius: 6px;
+    cursor: pointer;
+}
+input{
+    height: 16px;
+}
+.container-registrasi {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    width: 22rem;
+    height: 14rem;
+}
+
+label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+form {
+    flex-direction: column;
+    display: flex;
+    gap: 8px;
+    width: 18.6rem;
+}
+
+#file {
+    height: 22px;
+}

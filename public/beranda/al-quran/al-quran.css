@@ -1,0 +1,264 @@
+* {
+    margin: 0;
+    padding: 0;
+    color: #000;
+    box-sizing: border-box;
+    font-family: "Lato", sans-serif;
+
+}
+
+body {
+    background-color: #eab0c3;
+}
+
+h1 {
+    color: #a0dfdf;
+}
+
+.sidenav {
+    height: 100%;
+    width: 160px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+.sidenav a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #a0dfdf;
+    display: block;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.sidenav a:nth-child(3) {
+    background-color: #FF4500;
+}
+
+.main {
+    margin-left: 160px;
+    font-size: 20.4px;
+    padding: 0px 10px;
+}
+
+
+
+.profil {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #a0dfdf;
+}
+
+.profil-foto {
+    width: 96px;
+    height: 96px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profil-foto>img {
+    border-radius: 100%;
+    height: 82px;
+    width: 82px;
+}
+
+.profil>p {
+    color: #111;
+}
+
+.jarak {
+    height: 40px;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1px;
+    background: #FF4500;
+    margin: 4px;
+    border-radius: 22rem 0;
+}
+
+.container>img {
+    width: 13rem;
+}
+
+.container-header {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    gap: 68px;
+    padding: 5px;
+
+}
+
+.container-header p {
+    background: antiquewhite;
+    border-radius: 26px 0 26px 0;
+    padding: 10px;
+}
+
+.photo {
+    display: flex;
+    width: 30.8rem;
+    height: 17.4rem;
+    align-items: center;
+}
+
+.photo>img {
+    height: 14rem;
+    width: 20rem;
+    border-radius: 0 5rem;
+}
+
+.menu-profil {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu-profil>img {
+    height: 8em;
+    width: 8rem;
+    border-radius: 100%;
+}
+
+.menu-profil>h1 {
+    font-size: 1.6rem;
+}
+
+.container-header>p {
+    font-size: 14px;
+}
+
+
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.section {
+    display: flex;
+    justify-content: center;
+
+}
+
+.section img {
+    width: 80%;
+}
+
+.output {
+    background-color: #EDF7FA;
+    display: flex;
+    width: 80%;
+}
+
+.ayat-ku {
+    display: grid;
+    text-align: end;
+    justify-content: flex-end;
+    padding: 0 24px;
+    font-family: 'Uthmani', serif;
+    color: #584810;
+    font-size: 24px;
+}
+
+.arti-ku {
+    font-family: tahoma, sans-serif;
+    padding: 5px;
+    font-size: 16px;
+    text-align: justify;
+}
+
+#quran {
+    background-color: #FF4500;
+}
+
+.sidenav a:nth-child(3) {
+    background-color: #111;
+    color: #a0dfdf;
+}
+
+#suroh {
+    width: 80%;
+    background-color: #FF4500;
+    color: #a0dfdf;
+}
+
+.ayat {
+    margin: 24px 0;
+}
+
+@media(max-width:768px) {
+    .ayat-ku {
+        font-size: 16px;
+    }
+
+    .nama-suroh h3 {
+        font-size: 16px;
+    }
+}
+
+@media(max-width:497px) {
+    .ayat-ku {
+        font-size: 10px;
+    }
+
+    .nama-suroh h3 {
+        font-size: 12px;
+    }
+}
+
+@media(max-width : 400px) {
+    .menu-profil>img {
+        height: 6rem;
+        width: 6rem;
+    }
+
+    .menu-profil>h1 {
+        font-size: 1.2rem;
+    }
+
+    .section img {
+        width: 100%;
+    }
+
+    #suroh {
+        width: 100%;
+        font-size: 8px;
+    }
+
+    .output {
+        width: 100%;
+    }
+
+    .nama-suroh h3 {
+        font-size: 8px;
+    }
+
+    .ayat-ku {
+        font-size: 8px;
+    }
+
+}
+@media(max-width:351px){
+.sidenav > a{
+    font-size: 16px;
+} 
+}

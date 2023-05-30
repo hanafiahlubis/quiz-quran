@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <!-- <link rel="stylesheet" href="../style.css" /> -->
+    <link rel="stylesheet" href="al-quran.css" />
+  </head>
+
+  <body>
+    <div class="sidenav">
+      <div class="menu-profil">
+        <img src="../../photos/ramadan-photos-ramadan.gif" alt="" />
+        <h1>AL-Qur`an</h1>
+      </div>
+      <div class="jarak"></div>
+      <a href="../">Beranda</a>
+      <a id="quran" href="">Al-Qur`an</a>
+      <a href="../kuis/">Quiz</a>
+      <a id="keluar">keluar</a>
+    </div>
+    <div class="main">
+      <div class="section">
+        <img src="../../photos/alqur`an.jpg" alt="" />
+      </div>
+      <select id="suroh"></select>
+      <div class="output"></div>
+    </div>
+  </body>
+  <script type="module">
+    const suroh = document.querySelector("#suroh");
+    const output = document.querySelector(".output");
+    async function option() {
+      !localStorage.getItem("token") && (location.href = "../../");
+
+      const res = await fetch("/api/get/suroh", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await res.json();
+      for (let x = 0; x < data.length; x++) {
+        const op = document.createElement("option");
+        op.value = x + 1;
+        op.textContent = `${data[x].suroh}. ${data[x].nama_suroh}`;
+        if (x === 1) {
+          op.setAttribute("selected", true);
+          ayat(op.value);
+        }
+        suroh.appendChild(op);
+      }
+    }
+    option();
+    async function ayat(e) {
+      output.textContent = "";
+      !localStorage.getItem("token") && (location.href = "../../");
+      const res = await fetch(`/api/user/al-qur1an/${e}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await res.json();
+
+      let div = document.createElement("div");
+      div.className = "nama-suroh";
+      let h3 = document.createElement("h3");
+      h3.textContent = data[0].nama_suroh;
+      div.appendChild(h3);
+      data.forEach((e) => {
+        const div2 = document.createElement("div");
+        div2.className = "ayat";
+        
+        const h2 = document.createElement("h2");
+        h2.className = "ayat-ku";
+        h2.textContent = e.isi_ayat;
+        div2.appendChild(h2);
+        const h2A = document.createElement("h2");
+        h2A.className = "ayat-ku";
+        h2A.textContent = e.arti;
+        div2.appendChild(h2A);
+        
+
+        div.appendChild(div2);
+        output.appendChild(div);
+      });
+    }
+    suroh.addEventListener("change", (e) => ayat(e.target.value));
+
+    document.querySelector("#keluar").onclick = () => {
+      window.localStorage.clear(localStorage.getItem("token"));
+      location.reload();
+    };
+  </script>
+</html>

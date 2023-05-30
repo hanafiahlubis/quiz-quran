@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="style.css" />
+    <!-- <link rel="stylesheet" href="menu.css" /> -->
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+  </head>
+  <body>
+    <div id="tampilan-kiri">
+      <a href="./" id="tampilan" class="menu tampilan">Lihat Soal</a>
+      <a href="./edit-soal/" id="ubah" class="menu">Edit Soal</a>
+      <a href="hapus-soal/" id="hapus" class="menu">Hapus Soal</a>
+      <a href="./insert-soal/insert.html" class="menu" id="tambah">Tambah Soal</a>
+      <a href="" id="keluar"class="menu">Keluar</a>
+    </div>
+
+    <div class="main">
+      <table  id="table-soal">
+        <tr>
+          <th rowspan="2">No</th>
+          <th rowspan="2">Soal</th>
+          <th colspan="4">Pilihan</th>
+          <th rowspan="2">jawaban</th>
+        </tr>
+        <tr>
+          <td>A</td>
+          <td>B</td>
+          <td>C</td>
+          <td>D</td>
+        </tr>
+      </table>
+    </div>
+    <script type="module">
+      import validasiUrl, { fetch2 } from "../validasi-url.js";
+      async function dataSoal() {
+        validasiUrl();
+        const res = await fetch2("/api/soal");
+        const kumpulanData = await res.json();
+        kumpulanData.forEach((data, index) => {
+          const table = document.getElementById("table-soal");
+          const tr = document.createElement("tr");
+
+          const td = document.createElement("td");
+          td.textContent = index + 1;
+          tr.appendChild(td);
+
+          const td1 = document.createElement("td");
+          td1.textContent = data.soal;
+          tr.appendChild(td1);
+
+          const td2 = document.createElement("td");
+          td2.textContent = data.pilihan_A;
+          tr.appendChild(td2);
+
+          const td3 = document.createElement("td");
+          td3.textContent = data.pilihan_B;
+          tr.appendChild(td3);
+
+          const td4 = document.createElement("td");
+          td4.textContent = data.pilihan_C;
+          tr.appendChild(td4);
+
+          const td5 = document.createElement("td");
+          td5.textContent = data.pilihan_D;
+          tr.appendChild(td5);    
+
+                const td6 = document.createElement("td");
+          td6.textContent = data.jawaban;
+          tr.appendChild(td6);
+
+          table.appendChild(tr);
+        });
+      }
+      dataSoal();
+      document.querySelector("#keluar").onclick = (e) => {
+        window.localStorage.clear(localStorage.getItem("token"));
+        location.reload();
+      };
+    </script>
+  </body>
+</html>
